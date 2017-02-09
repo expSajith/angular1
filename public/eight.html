@@ -1,0 +1,104 @@
+<html ng-app="nameApp">
+<head>
+<title> Angular Examples</title>
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+<script src="angular.js"></script>
+<script>
+		
+ var nameApp = angular.module('nameApp',[]);
+     	nameApp.controller('NameControl',function($scope,$http){
+       $scope.getValues = function(){
+       	 $http.get("/data").success(function(data){
+ 		$scope.names =data;
+ 		console.log(data);
+
+ 		$scope.sortField = 'runs';
+ 		$scope.reverse = true;
+ 	});
+    }
+     $scope.getValues();
+ 		$scope.addname = function(){
+ 		var json = {name:$scope.player,runs:$scope.runs};
+ 		 $http.post("/insert",json)
+ 		 .then(function(response){
+ 		 	$scope.getValues();
+ 		 },function(error){
+
+
+ 		 });
+ 	}
+
+ 	$scope.remove = function(id){
+ 		var json = {id:id};
+      $http.post("/delete",json)
+ 		 .then(function(response){
+ 		 	$scope.getValues();
+ 		 },function(error){
+
+
+ 		 });
+ 	}
+ });
+
+</script>
+</head>
+<body ng-controller="NameControl">
+<div class="container">
+<div class="row">
+<div class="col-sm-4">
+<div class="panel panel-primary">
+     <div class="panel-heading">Add Data</div>
+        <div class="panel-body"> 
+
+ <form ng-submit="addname();">
+<div class="form-group">
+<label>Player</label>
+<input class="form-control"ng-model="player" type="text"/>
+</div>
+<label>HighScore</label>
+<div class="form-group">
+<input class="form-control"ng-model="runs" type="text"/>
+</div>
+<div class="form-group">
+<button type="submit" class="btn btn-success">Add</button>
+</div>
+</form>
+
+ </div>
+ </div>
+
+</div>
+<div class="col-sm-4">
+<div class="panel panel-primary">
+ <div class="panel-heading">Sample</div>
+ <div class="panel-body"> 
+<div class="table-responsive">
+search<input type="text" ng-model="query">
+<table class="table table-hover">
+<thead>
+<tr>
+<th ng-click="sortField='name';reverse=!reverse">Name</th>	
+<th ng-click="sortField='runs';reverse=!reverse">Runs</th>
+<th></th>	
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="name in names | filter:query | orderBy:sortField:reverse">	
+<td id='{{name.id}}'> {{name.name}} </td>
+<td> {{name.runs}} </td>
+<td><a href="" class="btn btn-danger btn-sm" ng-click="remove(name.id)">Remove</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+ </div>
+ </div>
+
+
+</div>
+<div class="col-sm-4"></div>
+</div>
+</div>
+</body>
+</html> 

@@ -1,0 +1,34 @@
+<html ng-app>
+<head>
+<title> Angular Examples</title>
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+<script src="angular.js"></script>
+<script>
+	function NameControl($scope){
+		$scope.fname="John";
+		$scope.lname="Cena";
+	}	
+
+
+</script>
+</head>
+<body ng-controller="NameControl">
+<div class="container">
+<div class="row">
+<div class="col-sm-4"></div>
+<div class="col-sm-4">
+<h1> Hello <strong> {{fname}} {{lname}} </strong></h1>
+<form>
+<div class="form-group">
+Name:<input class="form-control"ng-model="fname" type="text"/>
+</div>
+<div class="form-group">
+Name:<input class="form-control" ng-model="lname" type="text"/>
+</div>
+</form>
+</div>
+<div class="col-sm-4"></div>
+</div>
+</div>
+</body>
+</html> 

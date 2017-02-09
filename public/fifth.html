@@ -1,0 +1,43 @@
+<html ng-app="nameApp">
+<head>
+<title> Angular Examples</title>
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+<script src="angular.js"></script>
+<script>
+		
+ var nameApp = angular.module('nameApp',[]);
+ nameApp.controller('NameControl',function($scope){
+ 	
+ 	$scope.fname="Virat";
+ 	// $scope.lname="Kohli";
+ 	$scope.$watch('lname',function(newValue,oldValue){
+ 		console.log("newValue is",newValue);
+ 	});
+ 	setTimeout(function(){
+ 		$scope.lname="kohli";
+ 		$scope.$apply();
+ 	},5000);
+ });
+
+</script>
+</head>
+<body ng-controller="NameControl">
+<div class="container">
+<div class="row">
+<div class="col-sm-4"></div>
+<div class="col-sm-4">
+<h1> Hello <strong> {{fname}} {{lname}} </strong></h1>
+<form>
+<div class="form-group">
+Name:<input class="form-control"ng-model="fname" type="text"/>
+</div>
+<div class="form-group">
+Name:<input class="form-control" ng-model="lname" type="text"/>
+</div>
+</form>
+</div>
+<div class="col-sm-4"></div>
+</div>
+</div>
+</body>
+</html> 

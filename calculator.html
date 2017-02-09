@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> SIMPLE CALCULATOR</title>
+	<script  src="angular.js"></script>
+	<script src="calculator.js"> </script>
+		<link rel="stylesheet" type="text/css" href="calculator.css">
+</head>
+<body>
+<center>
+	<div  id="controller"ng-app="" ng-controller="Calculator">
+		<h2> SIMPLE CALCULATOR </h2>
+		<div id="display">
+			<p><input type="number" ng-model="op1" placeholder="enter num"> </p>
+<!-- 			<p><input type="text" id="op" readonly="true"> </p> -->
+			<p><input type="number" ng-model="op2" placeholder="enter num"> </p>
+			<!-- <p><button type="button" ng-click="answer();">
+				ANS
+			</button></p> -->
+			<p><input type="text" value={{answer()}} readonly="true"> </p>
+		</div>
+		<div id="operation">
+			<button type="button" ng-click="opp('+');">
+				+
+			</button>
+			<button type="button" ng-click="opp('-');">
+				-
+			</button>
+			<button type="button" ng-click="opp('*');">
+				*
+			</button>
+			<button type="button" ng-click="opp('/');">
+				/
+			</button>
+			<button type="button" ng-click="clear();">
+				CLR
+			</button>
+		</div>
+	</div>
+	</center>
+	
+</body>
+</html>

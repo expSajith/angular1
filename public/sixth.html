@@ -1,0 +1,46 @@
+<html ng-app="nameApp">
+<head>
+<title> Angular Examples</title>
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+<script src="angular.js"></script>
+<script>
+		
+ var nameApp = angular.module('nameApp',[]);
+ nameApp.controller('NameControl',function($scope){
+ 	$scope.names=[];
+ 	$scope.addname = function(){
+ 		$scope.names.push($scope.player);
+ 		$scope.player="";
+ 	}
+ 	$scope.remove = function(name){
+ 		var i = $scope.names.indexOf(name);
+ 		$scope.names.splice(i,1);
+ 	}
+ });
+
+</script>
+</head>
+<body ng-controller="NameControl">
+<div class="container">
+<div class="row">
+<div class="col-sm-4"></div>
+<div class="col-sm-4">
+<ul>
+<li ng-repeat="name in names">{{name}}
+<a href="" ng-click="remove(name)">Remove</a>
+</li>
+</ul>
+<form ng-submit="addname();">
+<div class="form-group">
+<input class="form-control"ng-model="player" type="text"/>
+</div>
+<div class="form-group">
+<button type="submit">Add</button>
+</div>
+</form>
+</div>
+<div class="col-sm-4"></div>
+</div>
+</div>
+</body>
+</html> 
