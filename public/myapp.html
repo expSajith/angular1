@@ -1,0 +1,66 @@
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Angular.js Example</title>
+    <script src="angular.js"></script>
+    <script src="angular-route.min.js"></script>
+    <script>
+      var myApp = angular.module('myApp', ['ngRoute']);
+      myApp.config(function($routeProvider) {
+        $routeProvider.
+          when('/', {
+            templateUrl: 'view.html',
+            controller: 'viewControl'
+          }).
+          when('/add', {
+            templateUrl: 'add.html',
+            controller: 'viewControl'
+          }).
+           when('/:id', {
+            templateUrl: 'view.html',
+            controller: 'viewControl'
+          }).
+          otherwise({
+            redirectTo: '/'
+          });
+      });
+
+      myApp.controller('viewControl', function ($scope, $routeParams, $http){
+         $scope.getValues = function(){
+         $http.get("/data").success(function(data){
+          $scope.names =data;
+          console.log(data);
+          $scope.sortField = 'runs';
+          $scope.reverse = true;
+  });
+    }
+     $scope.getValues();
+          $scope.remove = function(id){
+        var json = {id:id};
+        $http.post("/delete",json)
+      .then(function(response){
+       
+        },function(error){
+     });
+  }
+    $scope.addname = function(){
+    var json = {name:$scope.player,runs:$scope.runs};
+     $http.post("/insert",json)
+     .then(function(response){
+      $scope.getValues();
+      $scope.player="";
+      $scope.runs="";
+     },function(error){
+
+
+     });
+  }
+
+
+});
+    </script>
+  </head>
+  <body>
+    <div ng-view></div>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<html ng-app="nameApp">
+<head>
+<title> Angular Examples</title>
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+<script src="angular.js"></script>
+</head>
+<body>
+<div class="container">
+<div class="row" style="margin-top:100px">
+<div class="col-sm-3">
+<a href="myapp.html#/"class="btn btn-danger btn-sm">View</a>
+</div>
+<div class="col-sm-6">
+<div class="panel panel-primary">
+ <div class="panel-heading">Sample</div>
+ <div class="panel-body"> 
+ <form ng-submit="addname();">
+<div class="form-group">
+<label>Player</label>
+<input class="form-control"ng-model="player" type="text"/>
+</div>
+<label>Runs</label>
+<div class="form-group">
+<input class="form-control"ng-model="runs" type="text"/>
+</div>
+<div class="form-group">
+<button type="submit" class="btn btn-success">Add</button>
+</div>
+</form>
+
+ </div>
+ </div>
+</div>
+<div class="col-sm-3"></div>
+</div>
+</div>
+</body>
+</html> 

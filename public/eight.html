@@ -11,11 +11,11 @@
        	 $http.get("/data").success(function(data){
  		$scope.names =data;
  		console.log(data);
-
  		$scope.sortField = 'runs';
  		$scope.reverse = true;
  	});
-    }
+  }
+
      $scope.getValues();
  		$scope.addname = function(){
  		var json = {name:$scope.player,runs:$scope.runs};

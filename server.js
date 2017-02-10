@@ -42,6 +42,10 @@ app.get('/seven', function(req, res) {
 app.get('/eight', function(req, res) {
     res.sendFile(path.join(__dirname)+'/public/eight.html');
 });
+app.get('/route', function(req, res) {
+    res.sendFile(path.join(__dirname)+'/public/route.html');
+});
+
 
 
 app.get('/data',function(req,res){
